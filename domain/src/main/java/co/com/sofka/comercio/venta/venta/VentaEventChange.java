@@ -9,7 +9,7 @@ import java.util.HashSet;
 public class VentaEventChange extends EventChange {
     public VentaEventChange(Venta venta) {
         apply((VentaCreada event)->{
-            venta.factura = new HashSet<>();
+            venta.factura = event.getFactura();
             venta.valor = event.getValor();
         });
 
@@ -17,7 +17,7 @@ public class VentaEventChange extends EventChange {
             var facturaId =  event.getFacturaId();
             var factura = new Factura(facturaId, event.getFecha(), event.getValor());
             //TODO: validaciones
-            venta.factura.add(factura);
+            venta.factura = factura;
         });
     }
 }

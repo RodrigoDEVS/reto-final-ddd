@@ -11,7 +11,7 @@ public class FacturaGenerada extends DomainEvent {
     private final Valor valor;
 
     public FacturaGenerada(FacturaId facturaId, Fecha fecha, Valor valor) {
-        super("co.com.sofka.comercio.FacturaGenerada");
+        super("co.com.sofka.comercio.events.FacturaGenerada");
         this.facturaId = facturaId;
         this.fecha = fecha;
         this.valor = valor;

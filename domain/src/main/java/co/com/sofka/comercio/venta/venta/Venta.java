@@ -13,22 +13,22 @@ import java.util.List;
 import java.util.Set;
 
 public class Venta extends AggregateEvent<VentaId> {
-    protected Set<Factura> factura;
+    protected Factura factura;
     protected Valor valor;
 
-    public Venta(VentaId entityId, Factura factura, Valor valor) {
-        super(entityId);
+    public Venta(VentaId ventaId, Factura factura, Valor valor) {
+        super(ventaId);
         appendChange(new VentaCreada(factura, valor)).apply();
         subscribe(new VentaEventChange(this));
     }
 
-    private Venta(VentaId entityId){
-        super(entityId);
+    private Venta(VentaId ventaId){
+        super(ventaId);
         subscribe(new VentaEventChange(this));
     }
 
-    public static Venta from(VentaId entityId, List<DomainEvent> events){
-        var venta = new Venta(entityId);
+    public static Venta from(VentaId ventaId, List<DomainEvent> events){
+        var venta = new Venta(ventaId);
         events.forEach(venta::applyEvent);
         return venta;
     }
@@ -38,7 +38,7 @@ public class Venta extends AggregateEvent<VentaId> {
         appendChange(new FacturaGenerada(facturaId, fecha, valor)).apply();
     }
 
-    public Set<Factura> factura() {
+    public Factura factura() {
         return factura;
     }
 

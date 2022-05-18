@@ -8,7 +8,7 @@ public class VentaCreada extends DomainEvent {
     private final Factura factura;
     private final Valor valor;
     public VentaCreada(Factura factura, Valor valor) {
-        super("co.com.sofka.comercio.VentaCreada");
+        super("co.com.sofka.comercio.events.VentaCreada");
         this.factura = factura;
         this.valor = valor;
     }
