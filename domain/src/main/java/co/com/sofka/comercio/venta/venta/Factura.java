@@ -1,8 +1,8 @@
-package co.com.sofka.comercio.venta;
+package co.com.sofka.comercio.venta.venta;
 
-import co.com.sofka.comercio.venta.values.FacturaId;
-import co.com.sofka.comercio.venta.values.Fecha;
-import co.com.sofka.comercio.venta.values.Valor;
+import co.com.sofka.comercio.venta.venta.values.FacturaId;
+import co.com.sofka.comercio.venta.venta.values.Fecha;
+import co.com.sofka.comercio.venta.venta.values.Valor;
 import co.com.sofka.domain.generic.Entity;
 
 public class Factura extends Entity<FacturaId> {

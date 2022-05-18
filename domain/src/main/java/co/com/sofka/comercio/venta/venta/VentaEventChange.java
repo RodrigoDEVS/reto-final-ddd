@@ -1,7 +1,7 @@
-package co.com.sofka.comercio.venta;
+package co.com.sofka.comercio.venta.venta;
 
-import co.com.sofka.comercio.venta.events.FacturaGenerada;
-import co.com.sofka.comercio.venta.events.VentaCreada;
+import co.com.sofka.comercio.venta.venta.events.FacturaGenerada;
+import co.com.sofka.comercio.venta.venta.events.VentaCreada;
 import co.com.sofka.domain.generic.EventChange;
 
 import java.util.HashSet;

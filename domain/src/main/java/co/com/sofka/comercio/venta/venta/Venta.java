@@ -1,11 +1,11 @@
-package co.com.sofka.comercio.venta;
+package co.com.sofka.comercio.venta.venta;
 
-import co.com.sofka.comercio.venta.events.FacturaGenerada;
-import co.com.sofka.comercio.venta.events.VentaCreada;
-import co.com.sofka.comercio.venta.values.FacturaId;
-import co.com.sofka.comercio.venta.values.Fecha;
-import co.com.sofka.comercio.venta.values.Valor;
-import co.com.sofka.comercio.venta.values.VentaId;
+import co.com.sofka.comercio.venta.venta.events.FacturaGenerada;
+import co.com.sofka.comercio.venta.venta.events.VentaCreada;
+import co.com.sofka.comercio.venta.venta.values.FacturaId;
+import co.com.sofka.comercio.venta.venta.values.Fecha;
+import co.com.sofka.comercio.venta.venta.values.Valor;
+import co.com.sofka.comercio.venta.venta.values.VentaId;
 import co.com.sofka.domain.generic.AggregateEvent;
 import co.com.sofka.domain.generic.DomainEvent;
 

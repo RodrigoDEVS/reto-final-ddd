@@ -1,8 +1,8 @@
-package co.com.sofka.comercio.venta.events;
+package co.com.sofka.comercio.venta.venta.events;
 
-import co.com.sofka.comercio.venta.values.FacturaId;
-import co.com.sofka.comercio.venta.values.Fecha;
-import co.com.sofka.comercio.venta.values.Valor;
+import co.com.sofka.comercio.venta.venta.values.FacturaId;
+import co.com.sofka.comercio.venta.venta.values.Fecha;
+import co.com.sofka.comercio.venta.venta.values.Valor;
 import co.com.sofka.domain.generic.DomainEvent;
 
 public class FacturaGenerada extends DomainEvent {
