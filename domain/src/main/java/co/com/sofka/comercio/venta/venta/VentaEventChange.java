@@ -1,9 +1,6 @@
 package co.com.sofka.comercio.venta.venta;
 
-import co.com.sofka.comercio.venta.venta.events.DireccionClienteActualizada;
-import co.com.sofka.comercio.venta.venta.events.FacturaGenerada;
-import co.com.sofka.comercio.venta.venta.events.FechaGarantiaActualizada;
-import co.com.sofka.comercio.venta.venta.events.VentaCreada;
+import co.com.sofka.comercio.venta.venta.events.*;
 import co.com.sofka.domain.generic.EventChange;
 
 import java.util.HashSet;
@@ -31,6 +28,11 @@ public class VentaEventChange extends EventChange {
         apply((FechaGarantiaActualizada event) -> {
             var fecha = event.getFecha();
             venta.garantia.modificarFecha(fecha);
+        });
+
+        apply((ValorFacturaActualizado event) -> {
+            var valor = event.getValor();
+            venta.factura.actualizarValor(valor);
         });
     }
 }

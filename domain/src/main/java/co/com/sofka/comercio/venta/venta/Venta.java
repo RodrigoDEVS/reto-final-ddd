@@ -1,9 +1,6 @@
 package co.com.sofka.comercio.venta.venta;
 
-import co.com.sofka.comercio.venta.venta.events.DireccionClienteActualizada;
-import co.com.sofka.comercio.venta.venta.events.FacturaGenerada;
-import co.com.sofka.comercio.venta.venta.events.FechaGarantiaActualizada;
-import co.com.sofka.comercio.venta.venta.events.VentaCreada;
+import co.com.sofka.comercio.venta.venta.events.*;
 import co.com.sofka.comercio.venta.venta.values.*;
 import co.com.sofka.domain.generic.AggregateEvent;
 import co.com.sofka.domain.generic.DomainEvent;
@@ -38,6 +35,9 @@ public class Venta extends AggregateEvent<VentaId> {
         appendChange(new FacturaGenerada(facturaId, fecha, valor)).apply();
     }
 
+    public void actualizarValorFactura(FacturaId facturaId, Valor valor){
+        appendChange(new ValorFacturaActualizado(facturaId, valor)).apply();
+    }
     public void actualizarDireccionCliente(ClienteId clienteId, Direccion direccion){
         appendChange(new DireccionClienteActualizada(clienteId, direccion)).apply();
     }
