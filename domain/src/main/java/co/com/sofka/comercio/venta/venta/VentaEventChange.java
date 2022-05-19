@@ -2,6 +2,7 @@ package co.com.sofka.comercio.venta.venta;
 
 import co.com.sofka.comercio.venta.venta.events.DireccionClienteActualizada;
 import co.com.sofka.comercio.venta.venta.events.FacturaGenerada;
+import co.com.sofka.comercio.venta.venta.events.FechaGarantiaActualizada;
 import co.com.sofka.comercio.venta.venta.events.VentaCreada;
 import co.com.sofka.domain.generic.EventChange;
 
@@ -11,6 +12,7 @@ public class VentaEventChange extends EventChange {
     public VentaEventChange(Venta venta) {
         apply((VentaCreada event)->{
             venta.factura = event.getFactura();
+            venta.cliente = event.getCliente();
             venta.valor = event.getValor();
         });
 
@@ -24,6 +26,11 @@ public class VentaEventChange extends EventChange {
         apply((DireccionClienteActualizada event) -> {
             var direccion = event.getDireccion();
             venta.cliente.actualizarDireccion(direccion);
+        });
+
+        apply((FechaGarantiaActualizada event) -> {
+            var fecha = event.getFecha();
+            venta.garantia.modificarFecha(fecha);
         });
     }
 }
