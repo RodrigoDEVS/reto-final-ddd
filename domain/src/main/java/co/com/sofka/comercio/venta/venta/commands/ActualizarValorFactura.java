@@ -9,23 +9,17 @@ import co.com.sofka.domain.generic.Command;
 public class ActualizarValorFactura extends Command {
 
     private final FacturaId facturaId;
-    private final Fecha fecha;
     private final Valor valor;
     private final VentaId ventaId;
 
-    public ActualizarValorFactura(FacturaId facturaId, Fecha fecha, Valor valor, VentaId ventaId) {
+    public ActualizarValorFactura(FacturaId facturaId, Valor valor, VentaId ventaId) {
         this.facturaId = facturaId;
-        this.fecha = fecha;
         this.valor = valor;
         this.ventaId = ventaId;
     }
 
     public FacturaId getFacturaId() {
         return facturaId;
-    }
-
-    public Fecha getFecha() {
-        return fecha;
     }
 
     public Valor getValor() {
