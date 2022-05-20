@@ -4,18 +4,15 @@ import co.com.sofka.domain.generic.ValueObject;
 
 import java.util.Objects;
 
-public class Valor implements ValueObject<Integer> {
-    private final Integer value;
+public class Valor implements ValueObject<Double> {
+    private final Double value;
 
-    public Valor(Integer value){
+    public Valor(Double value){
         this.value = Objects.requireNonNull(value);
-        if(this.value==0){
-            throw new IllegalArgumentException("El valor no puede ser cero");
-        }
     }
 
     @Override
-    public Integer value() {
+    public Double value() {
         return value;
     }
 }

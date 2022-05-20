@@ -24,6 +24,6 @@ public class Consola extends Entity<ConsolaId> {
     }
 
     public void aplicarOferta(Valor valor){
-        this.valor = (valor);
+        this.valor = valor;
     }
 }

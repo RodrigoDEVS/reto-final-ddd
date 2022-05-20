@@ -12,8 +12,8 @@ public class Control extends Entity<ControlId> {
     protected Disenio disenio;
     protected Valor valor;
 
-    public Control(ControlId entityId, Sistema sistema, Disenio disenio, Valor valor) {
-        super(entityId);
+    public Control(ControlId controlId, Sistema sistema, Disenio disenio, Valor valor) {
+        super(controlId);
         this.sistema = sistema;
         this.disenio = disenio;
         this.valor = valor;
