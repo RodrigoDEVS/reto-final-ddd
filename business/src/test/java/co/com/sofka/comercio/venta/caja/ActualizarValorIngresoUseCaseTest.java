@@ -3,12 +3,12 @@ package co.com.sofka.comercio.venta.caja;
 import co.com.sofka.business.generic.UseCaseHandler;
 import co.com.sofka.business.repository.DomainEventRepository;
 import co.com.sofka.business.support.RequestCommand;
-import co.com.sofka.comercio.venta.caja.commands.ActualizarTelefonoCajero;
-import co.com.sofka.comercio.venta.caja.events.CajaCreada;
-import co.com.sofka.comercio.venta.caja.events.CajeroCreado;
-import co.com.sofka.comercio.venta.caja.events.TelefonoCajeroActualizado;
-import co.com.sofka.comercio.venta.caja.values.*;
-import co.com.sofka.comercio.venta.venta.values.Nombre;
+import co.com.sofka.comercio.venta.caja.commands.ActualizarValorIngreso;
+import co.com.sofka.comercio.venta.caja.events.*;
+import co.com.sofka.comercio.venta.caja.values.CajaId;
+import co.com.sofka.comercio.venta.caja.values.IngresoId;
+import co.com.sofka.comercio.venta.caja.values.Tienda;
+import co.com.sofka.comercio.venta.venta.values.Valor;
 import co.com.sofka.domain.generic.DomainEvent;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -20,23 +20,22 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
 
-
 @ExtendWith(MockitoExtension.class)
-public class ActualizarTelefonoCajeroUseCaseTest {
+public class ActualizarValorIngresoUseCaseTest {
 
     @InjectMocks
-    private ActualizarTelefonoCajeroUseCase useCase;
+    private ActualizarValorIngresoUseCase useCase;
 
     @Mock
     private DomainEventRepository repository;
 
     @Test
-    public void actualizarTelefonoCajeroHappyPass(){
+    public void actualizarValorIngresoHappyPass(){
         //arrange
         CajaId cajaId = CajaId.of("dddd");
-        CajeroId cajeroId = new CajeroId("aaaa");
-        Telefono telefono = new Telefono(3152441553L);
-        var command = new ActualizarTelefonoCajero(cajeroId, telefono, cajaId);
+        IngresoId ingresoId = new IngresoId("aaaa");
+        Valor valor = new Valor(10000D);
+        var command = new ActualizarValorIngreso(ingresoId, valor, cajaId);
 
         Mockito.when(repository.getEventsBy("dddd")).thenReturn(history());
         useCase.addRepository(repository);
@@ -44,20 +43,20 @@ public class ActualizarTelefonoCajeroUseCaseTest {
         //Act
         var events = UseCaseHandler.getInstance()
                 .setIdentifyExecutor(cajaId.value())
-                .syncExecutor(useCase,new RequestCommand<>(command))
+                .syncExecutor(useCase, new RequestCommand<>(command))
                 .orElseThrow()
                 .getDomainEvents();
 
         //Assert
-        var event =(TelefonoCajeroActualizado)events.get(0);
-        Assertions.assertEquals(3152441553L,event.getTelefono().value());
+        var event =(ValorIngresoActualizado)events.get(0);
+        Assertions.assertEquals(10000D,event.getValor().value());
         Mockito.verify(repository).getEventsBy(cajaId.value());
     }
     private List<DomainEvent> history(){
         Tienda tienda = new Tienda("Mundo Mario");
         var event = new CajaCreada(tienda);
         event.setAggregateRootId("xxxx");
-        var eventCajero = new CajeroCreado(CajeroId.of("aaaa"), new Nombre("Rodrigo"), new Cedula(16986186), new Telefono(3002881336L));
-        return List.of(event,eventCajero);
+        var eventIngreso = new IngresoCreado(IngresoId.of("aaaa"), new Valor(5000D));
+        return List.of(event, eventIngreso);
     }
 }

@@ -26,7 +26,6 @@ public class CrearCajero extends Command {
     public CajeroId getCajeroId() {
         return cajeroId;
     }
-
     public Nombre getNombre() {
         return nombre;
     }
