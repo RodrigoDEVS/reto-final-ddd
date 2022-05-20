@@ -10,29 +10,18 @@ import co.com.sofka.domain.generic.Command;
 public class ActualizarTelefonoCajero extends Command {
 
     private final CajeroId cajeroId;
-    private final Nombre nombre;
-    private final Cedula cedula;
+
     private final Telefono telefono;
     private final CajaId cajaId;
 
-    public ActualizarTelefonoCajero(CajeroId cajeroId, Nombre nombre, Cedula cedula, Telefono telefono, CajaId cajaId) {
+    public ActualizarTelefonoCajero(CajeroId cajeroId, Telefono telefono, CajaId cajaId) {
         this.cajeroId = cajeroId;
-        this.nombre = nombre;
-        this.cedula = cedula;
         this.telefono = telefono;
         this.cajaId = cajaId;
     }
 
     public CajeroId getCajeroId() {
         return cajeroId;
-    }
-
-    public Nombre getNombre() {
-        return nombre;
-    }
-
-    public Cedula getCedula() {
-        return cedula;
     }
 
     public Telefono getTelefono() {

@@ -5,7 +5,9 @@ import co.com.sofka.comercio.venta.carrito.values.*;
 import co.com.sofka.comercio.venta.venta.values.Nombre;
 import co.com.sofka.comercio.venta.venta.values.Valor;
 import co.com.sofka.domain.generic.AggregateEvent;
+import co.com.sofka.domain.generic.DomainEvent;
 
+import java.util.List;
 import java.util.Map;
 
 public class Carrito extends AggregateEvent<CarritoId> {
@@ -19,6 +21,17 @@ public class Carrito extends AggregateEvent<CarritoId> {
         super(carritoId);
         appendChange(new CarritoCreado(valor)).apply();
         subscribe(new CarritoEventChange(this));
+    }
+
+    public Carrito(CarritoId carritoId) {
+        super(carritoId);
+        subscribe(new CarritoEventChange(this));
+    }
+
+    public static Carrito from(CarritoId carritoId, List<DomainEvent> events){
+        var carrito = new Carrito(carritoId);
+        events.forEach(carrito::applyEvent);
+        return carrito;
     }
 
     public void agregarConsola(Sistema sistema, Tipo tipo, Modelo modelo, Valor valor){
