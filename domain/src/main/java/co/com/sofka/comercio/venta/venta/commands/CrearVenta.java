@@ -8,14 +8,10 @@ import co.com.sofka.domain.generic.Command;
 
 public class CrearVenta extends Command {
     private final VentaId ventaId;
-    private final Factura factura;
-    private final Garantia garantia;
     private final Valor valor;
 
-    public CrearVenta(VentaId ventaId, Factura factura, Garantia garantia, Valor valor) {
+    public CrearVenta(VentaId ventaId, Valor valor) {
         this.ventaId = ventaId;
-        this.factura = factura;
-        this.garantia = garantia;
         this.valor = valor;
     }
 
@@ -23,13 +19,6 @@ public class CrearVenta extends Command {
         return ventaId;
     }
 
-    public Factura getFactura() {
-        return factura;
-    }
-
-    public Garantia getGarantia(){
-        return garantia;
-    }
     public Valor getValor() {
         return valor;
     }

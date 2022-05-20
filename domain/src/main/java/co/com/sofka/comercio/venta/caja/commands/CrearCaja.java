@@ -4,35 +4,24 @@ import co.com.sofka.comercio.venta.caja.Cajero;
 import co.com.sofka.comercio.venta.caja.Egreso;
 import co.com.sofka.comercio.venta.caja.Ingreso;
 import co.com.sofka.comercio.venta.caja.values.CajaId;
+import co.com.sofka.comercio.venta.caja.values.Tienda;
 import co.com.sofka.domain.generic.Command;
 
 public class CrearCaja extends Command {
 
     private final CajaId cajaId;
-    private final Cajero cajero;
-    private final Ingreso ingreso;
-    private final Egreso egreso;
+    private final Tienda tienda;
 
-    public CrearCaja(CajaId cajaId, Cajero cajero, Ingreso ingreso, Egreso egreso) {
+    public CrearCaja(CajaId cajaId, Tienda tienda) {
         this.cajaId = cajaId;
-        this.cajero = cajero;
-        this.ingreso = ingreso;
-        this.egreso = egreso;
+        this.tienda = tienda;
     }
 
     public CajaId getCajaId() {
         return cajaId;
     }
 
-    public Cajero getCajero() {
-        return cajero;
-    }
-
-    public Ingreso getIngreso() {
-        return ingreso;
-    }
-
-    public Egreso getEgreso() {
-        return egreso;
+    public Tienda getTienda() {
+        return tienda;
     }
 }
