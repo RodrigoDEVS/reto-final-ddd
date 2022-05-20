@@ -1,8 +1,6 @@
 package co.com.sofka.comercio.venta.carrito;
 
-import co.com.sofka.comercio.venta.caja.CajaEventChange;
-import co.com.sofka.comercio.venta.carrito.values.Disenio;
-import co.com.sofka.comercio.venta.carrito.values.Sistema;
+import co.com.sofka.comercio.venta.carrito.values.*;
 import co.com.sofka.comercio.venta.venta.values.Valor;
 import co.com.sofka.domain.generic.AggregateEvent;
 
@@ -26,4 +24,19 @@ public class Carrito extends AggregateEvent<CarritoId> {
         appendChange(new ControlCreado(controlId, sistema, disenio, valor)).apply();
     }
 
+    public Map<ConsolaId, Consola> Consolas() {
+        return consolas;
+    }
+
+    public Map<VideojuegoId, Videojuego> Videojuegos() {
+        return videojuegos;
+    }
+
+    public Map<ControlId, Control> Controles() {
+        return controles;
+    }
+
+    public Valor Valor() {
+        return valor;
+    }
 }

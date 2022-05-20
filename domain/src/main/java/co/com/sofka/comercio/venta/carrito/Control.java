@@ -1,5 +1,6 @@
 package co.com.sofka.comercio.venta.carrito;
 
+import co.com.sofka.comercio.venta.carrito.values.ControlId;
 import co.com.sofka.comercio.venta.carrito.values.Disenio;
 import co.com.sofka.comercio.venta.carrito.values.Sistema;
 import co.com.sofka.comercio.venta.venta.values.Valor;
@@ -18,7 +19,7 @@ public class Control extends Entity<ControlId> {
         this.valor = valor;
     }
 
-    public void agregarAlCarrito(){
-
+    public void aplicarOferta(Valor valor){
+        this.valor = (valor);
     }
 }
