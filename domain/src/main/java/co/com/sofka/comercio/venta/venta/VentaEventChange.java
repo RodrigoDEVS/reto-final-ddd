@@ -8,8 +8,6 @@ import java.util.HashSet;
 public class VentaEventChange extends EventChange {
     public VentaEventChange(Venta venta) {
         apply((VentaCreada event)->{
-            venta.factura = event.getFactura();
-            venta.cliente = event.getCliente();
             venta.valor = event.getValor();
         });
 
@@ -18,6 +16,12 @@ public class VentaEventChange extends EventChange {
             var factura = new Factura(facturaId, event.getFecha(), event.getValor());
             //TODO: validaciones
             venta.factura = factura;
+        });
+
+        apply((ClienteAgregado event) -> {
+            var clienteId = event.getClienteId();
+            var cliente = new Cliente(clienteId, event.getNombre(), event.getDireccion());
+            venta.cliente = cliente;
         });
 
         apply((DireccionClienteActualizada event) -> {

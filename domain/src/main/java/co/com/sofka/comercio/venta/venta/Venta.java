@@ -11,11 +11,12 @@ public class Venta extends AggregateEvent<VentaId> {
     protected Factura factura;
     protected Cliente cliente;
     protected Garantia garantia;
+
     protected Valor valor;
 
-    public Venta(VentaId ventaId, Factura factura, Cliente cliente, Garantia garantia, Valor valor) {
+    public Venta(VentaId ventaId, Valor valor) {
         super(ventaId);
-        appendChange(new VentaCreada(factura, cliente, garantia, valor)).apply();
+        appendChange(new VentaCreada(valor)).apply();
         subscribe(new VentaEventChange(this));
     }
 
@@ -33,6 +34,16 @@ public class Venta extends AggregateEvent<VentaId> {
     public void generarFactura(Fecha fecha, Valor valor){
         var facturaId = new FacturaId();
         appendChange(new FacturaGenerada(facturaId, fecha, valor)).apply();
+    }
+
+    public void agregarCliente(Nombre nombre, Direccion direccion){
+        var clienteId = new ClienteId();
+        appendChange(new ClienteAgregado(clienteId, nombre, direccion)).apply();
+    }
+
+    public void agregarGarantia(Fecha fecha){
+        var garantiaId = new GarantiaId();
+        appendChange(new GarantiaAgregada(garantiaId, fecha)).apply();
     }
 
     public void actualizarValorFactura(FacturaId facturaId, Valor valor){
