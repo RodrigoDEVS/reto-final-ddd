@@ -1,10 +1,8 @@
 package co.com.sofka.comercio.venta.caja;
 
-import co.com.sofka.comercio.venta.caja.events.CajaCreada;
-import co.com.sofka.comercio.venta.caja.events.TelefonoCajeroActualizado;
-import co.com.sofka.comercio.venta.caja.events.ValorEgresoActualizado;
-import co.com.sofka.comercio.venta.caja.events.ValorIngresoActualizado;
+import co.com.sofka.comercio.venta.caja.events.*;
 import co.com.sofka.comercio.venta.caja.values.*;
+import co.com.sofka.comercio.venta.venta.values.Nombre;
 import co.com.sofka.comercio.venta.venta.values.Valor;
 import co.com.sofka.domain.generic.AggregateEvent;
 import co.com.sofka.domain.generic.DomainEvent;
@@ -16,9 +14,11 @@ public class Caja extends AggregateEvent<CajaId> {
     protected Ingreso ingreso;
     protected Egreso egreso;
 
-    public Caja(CajaId cajaId, Cajero cajero, Ingreso ingreso, Egreso egreso) {
+    protected Tienda tienda;
+
+    public Caja(CajaId cajaId, Tienda tienda) {
         super(cajaId);
-        appendChange(new CajaCreada(cajero, ingreso, egreso)).apply();
+        appendChange(new CajaCreada(tienda)).apply();
         subscribe(new CajaEventChange(this));
     }
 
@@ -31,6 +31,21 @@ public class Caja extends AggregateEvent<CajaId> {
         var caja = new Caja(cajaId);
         events.forEach(caja::applyEvent);
         return caja;
+    }
+
+    public void crearCajero(Nombre nombre, Cedula cedula, Telefono telefono){
+        var cajeroId = new CajeroId();
+        appendChange(new CajeroCreado(cajeroId, nombre, cedula, telefono)).apply();
+    }
+
+    public void crearIngreso(Valor valor){
+        var ingresoId = new IngresoId();
+        appendChange(new IngresoCreado(ingresoId, valor)).apply();
+    }
+
+    public void crearEgreso(Valor valor){
+        var egresoId = new EgresoId();
+        appendChange(new EgresoCreado(egresoId, valor)).apply();
     }
     public void actualizarValorIngreso(IngresoId ingresoId, Valor valor){
         appendChange(new ValorIngresoActualizado(ingresoId, valor)).apply();
