@@ -53,9 +53,6 @@ public class Venta extends AggregateEvent<VentaId> {
         appendChange(new DireccionClienteActualizada(clienteId, direccion)).apply();
     }
 
-    public void modificarFechaGarantia(GarantiaId garantiaId, Fecha fecha){
-        appendChange(new FechaGarantiaActualizada(garantiaId, fecha)).apply();
-    }
     public Factura factura() {
         return factura;
     }

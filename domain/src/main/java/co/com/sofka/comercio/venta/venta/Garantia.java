@@ -15,7 +15,4 @@ public class Garantia extends Entity<GarantiaId> {
         this.fecha = fecha;
     }
 
-    public void modificarFecha(Fecha fecha){
-        this.fecha = Objects.requireNonNull(fecha);
-    }
 }

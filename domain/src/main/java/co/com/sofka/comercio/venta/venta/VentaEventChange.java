@@ -29,11 +29,6 @@ public class VentaEventChange extends EventChange {
             venta.cliente.actualizarDireccion(direccion);
         });
 
-        apply((FechaGarantiaActualizada event) -> {
-            var fecha = event.getFecha();
-            venta.garantia.modificarFecha(fecha);
-        });
-
         apply((ValorFacturaActualizado event) -> {
             var valor = event.getValor();
             venta.factura.actualizarValor(valor);
