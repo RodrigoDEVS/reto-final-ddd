@@ -3,6 +3,7 @@ package co.com.sofka.comercio.venta.venta;
 import co.com.sofka.business.generic.UseCaseHandler;
 import co.com.sofka.business.repository.DomainEventRepository;
 import co.com.sofka.business.support.RequestCommand;
+import co.com.sofka.comercio.venta.caja.values.CajaId;
 import co.com.sofka.comercio.venta.venta.commands.AgregarCliente;
 import co.com.sofka.comercio.venta.venta.events.ClienteAgregado;
 import co.com.sofka.comercio.venta.venta.events.VentaCreada;
@@ -51,8 +52,9 @@ public class AgregarClienteUseCaseTest {
         Assertions.assertEquals("Calle 34 con 21", event.getDireccion().value());
     }
     private List<DomainEvent> history(){
+        CajaId cajaId = new CajaId("xxxx");
         Valor valor = new Valor(0D);
-        var event = new VentaCreada(valor);
+        var event = new VentaCreada(valor, cajaId);
         event.setAggregateRootId("xxxx");
         return List.of(event);
     }

@@ -3,16 +3,8 @@ package co.com.sofka.comercio.venta.venta;
 import co.com.sofka.business.generic.UseCaseHandler;
 import co.com.sofka.business.repository.DomainEventRepository;
 import co.com.sofka.business.support.RequestCommand;
-import co.com.sofka.comercio.venta.caja.ActualizarValorIngresoUseCase;
-import co.com.sofka.comercio.venta.caja.commands.ActualizarValorIngreso;
-import co.com.sofka.comercio.venta.caja.events.CajaCreada;
-import co.com.sofka.comercio.venta.caja.events.IngresoCreado;
-import co.com.sofka.comercio.venta.caja.events.ValorIngresoActualizado;
 import co.com.sofka.comercio.venta.caja.values.CajaId;
-import co.com.sofka.comercio.venta.caja.values.IngresoId;
-import co.com.sofka.comercio.venta.caja.values.Tienda;
 import co.com.sofka.comercio.venta.venta.commands.ActualizarValorFactura;
-import co.com.sofka.comercio.venta.venta.commands.CrearVenta;
 import co.com.sofka.comercio.venta.venta.events.FacturaGenerada;
 import co.com.sofka.comercio.venta.venta.events.ValorFacturaActualizado;
 import co.com.sofka.comercio.venta.venta.events.VentaCreada;
@@ -31,7 +23,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.List;
 
 @ExtendWith(MockitoExtension.class)
@@ -67,8 +58,9 @@ public class ActualizarValorFacturaUseCaseTest {
         Mockito.verify(repository).getEventsBy(ventaId.value());
     }
     private List<DomainEvent> history(){
+        CajaId cajaId = new CajaId("dddd");
         Valor valor = new Valor(0D);
-        var event = new VentaCreada(valor);
+        var event = new VentaCreada(valor, cajaId);
         event.setAggregateRootId("dddd");
         var eventFactura = new FacturaGenerada(FacturaId.of("01AB58CD"), new Fecha(LocalDate.now(), LocalDateTime.now()), new Valor(5000D));
         return List.of(event, eventFactura);

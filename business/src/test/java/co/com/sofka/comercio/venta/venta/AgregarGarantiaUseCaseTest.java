@@ -3,8 +3,8 @@ package co.com.sofka.comercio.venta.venta;
 import co.com.sofka.business.generic.UseCaseHandler;
 import co.com.sofka.business.repository.DomainEventRepository;
 import co.com.sofka.business.support.RequestCommand;
+import co.com.sofka.comercio.venta.caja.values.CajaId;
 import co.com.sofka.comercio.venta.venta.commands.AgregarGarantia;
-import co.com.sofka.comercio.venta.venta.events.FacturaGenerada;
 import co.com.sofka.comercio.venta.venta.events.GarantiaAgregada;
 import co.com.sofka.comercio.venta.venta.events.VentaCreada;
 import co.com.sofka.comercio.venta.venta.values.*;
@@ -51,8 +51,9 @@ public class AgregarGarantiaUseCaseTest {
         Assertions.assertEquals(fecha, event.getFecha());
     }
     private List<DomainEvent> history(){
+        CajaId cajaId = new CajaId("xxxx");
         Valor valor = new Valor(0D);
-        var event = new VentaCreada(valor);
+        var event = new VentaCreada(valor, cajaId);
         event.setAggregateRootId("xxxx");
         return List.of(event);
     }

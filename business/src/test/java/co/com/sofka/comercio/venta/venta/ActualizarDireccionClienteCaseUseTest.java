@@ -3,6 +3,7 @@ package co.com.sofka.comercio.venta.venta;
 import co.com.sofka.business.generic.UseCaseHandler;
 import co.com.sofka.business.repository.DomainEventRepository;
 import co.com.sofka.business.support.RequestCommand;
+import co.com.sofka.comercio.venta.caja.values.CajaId;
 import co.com.sofka.comercio.venta.venta.commands.ActualizarDireccionCliente;
 import co.com.sofka.comercio.venta.venta.events.*;
 import co.com.sofka.comercio.venta.venta.values.*;
@@ -50,8 +51,9 @@ public class ActualizarDireccionClienteCaseUseTest {
         Mockito.verify(repository).getEventsBy(ventaId.value());
     }
     private List<DomainEvent> history(){
+        CajaId cajaId = new CajaId("dddd");
         Valor valor = new Valor(0D);
-        var event = new VentaCreada(valor);
+        var event = new VentaCreada(valor, cajaId);
         event.setAggregateRootId("dddd");
         var eventCliente = new ClienteAgregado(ClienteId.of("CC16986186"), new Nombre("Rodrigo Gallego"), new Direccion("Cra 15 con 16"));
         return List.of(event, eventCliente);

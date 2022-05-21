@@ -11,6 +11,7 @@ public class VentaEventChange extends EventChange {
             venta.valor = event.getValor();
             venta.estadoDeVenta = new EstadoDeVenta(EstadoDeVenta.Estados.POR_INICIAR);
             venta.cierre = new Cierre(0D);
+            venta.cajaId = event.getCajaId();
         });
 
         apply((FacturaGenerada event)->{

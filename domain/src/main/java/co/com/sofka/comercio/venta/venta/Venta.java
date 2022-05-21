@@ -1,5 +1,6 @@
 package co.com.sofka.comercio.venta.venta;
 
+import co.com.sofka.comercio.venta.caja.values.CajaId;
 import co.com.sofka.comercio.venta.caja.values.Cierre;
 import co.com.sofka.comercio.venta.venta.events.*;
 import co.com.sofka.comercio.venta.venta.values.*;
@@ -9,6 +10,8 @@ import co.com.sofka.domain.generic.DomainEvent;
 import java.util.List;
 
 public class Venta extends AggregateEvent<VentaId> {
+
+    protected CajaId cajaId;
     protected Factura factura;
     protected Cliente cliente;
     protected Garantia garantia;
@@ -19,9 +22,9 @@ public class Venta extends AggregateEvent<VentaId> {
 
     protected EstadoDeVenta estadoDeVenta;
 
-    public Venta(VentaId ventaId, Valor valor) {
+    public Venta(VentaId ventaId, CajaId cajaId, Valor valor) {
         super(ventaId);
-        appendChange(new VentaCreada(valor)).apply();
+        appendChange(new VentaCreada(valor, cajaId)).apply();
         subscribe(new VentaEventChange(this));
     }
 
@@ -59,7 +62,7 @@ public class Venta extends AggregateEvent<VentaId> {
     }
 
     public void finalizarVenta(Cierre cierre){
-        appendChange(new VentaFinalizada(cierre)).apply();
+        appendChange(new VentaFinalizada(cierre, cajaId)).apply();
     }
     public Factura factura() {
         return factura;

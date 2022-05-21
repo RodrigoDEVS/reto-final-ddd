@@ -4,6 +4,7 @@ import co.com.sofka.business.generic.ServiceBuilder;
 import co.com.sofka.business.generic.UseCaseHandler;
 import co.com.sofka.business.repository.DomainEventRepository;
 import co.com.sofka.business.support.RequestCommand;
+import co.com.sofka.comercio.venta.caja.values.CajaId;
 import co.com.sofka.comercio.venta.caja.values.Cierre;
 import co.com.sofka.comercio.venta.venta.commands.FinalizarVenta;
 import co.com.sofka.comercio.venta.venta.events.VentaCreada;
@@ -21,7 +22,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -55,8 +55,9 @@ class FinalizarVentaUseCaseTest {
     }
 
     private List<DomainEvent> history(){
+        CajaId cajaId = new CajaId("dddd");
         Valor valor = new Valor(0D);
-        var event = new VentaCreada(valor);
+        var event = new VentaCreada(valor, cajaId);
         event.setAggregateRootId("dddd");
         return List.of(event);
     }
