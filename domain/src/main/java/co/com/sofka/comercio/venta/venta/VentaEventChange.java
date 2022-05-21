@@ -1,14 +1,16 @@
 package co.com.sofka.comercio.venta.venta;
 
+import co.com.sofka.comercio.venta.caja.values.Cierre;
 import co.com.sofka.comercio.venta.venta.events.*;
+import co.com.sofka.comercio.venta.venta.values.EstadoDeVenta;
 import co.com.sofka.domain.generic.EventChange;
-
-import java.util.HashSet;
 
 public class VentaEventChange extends EventChange {
     public VentaEventChange(Venta venta) {
         apply((VentaCreada event)->{
             venta.valor = event.getValor();
+            venta.estadoDeVenta = new EstadoDeVenta(EstadoDeVenta.Estados.POR_INICIAR);
+            venta.cierre = new Cierre(0D);
         });
 
         apply((FacturaGenerada event)->{
@@ -32,6 +34,11 @@ public class VentaEventChange extends EventChange {
         apply((ValorFacturaActualizado event) -> {
             var valor = event.getValor();
             venta.factura.actualizarValor(valor);
+        });
+
+        apply((VentaFinalizada event) -> {
+            venta.cierre = event.getCierre();
+            venta.estadoDeVenta = new EstadoDeVenta(EstadoDeVenta.Estados.FINALIZADA);
         });
     }
 }

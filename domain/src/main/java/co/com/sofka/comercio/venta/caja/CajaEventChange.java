@@ -1,6 +1,7 @@
 package co.com.sofka.comercio.venta.caja;
 
 import co.com.sofka.comercio.venta.caja.events.*;
+import co.com.sofka.comercio.venta.caja.values.Cierre;
 import co.com.sofka.comercio.venta.caja.values.EgresoId;
 import co.com.sofka.domain.generic.EventChange;
 
@@ -8,6 +9,7 @@ public class CajaEventChange extends EventChange {
     public CajaEventChange(Caja caja) {
         apply((CajaCreada event) ->{
             caja.tienda = event.getTienda();
+            caja.cierre = new Cierre(0D);
         });
 
         apply((CajeroCreado event) -> {
@@ -38,6 +40,10 @@ public class CajaEventChange extends EventChange {
 
         apply((TelefonoCajeroActualizado event) -> {
             caja.cajero.actualizarTelefono(event.getTelefono());
+        });
+
+        apply((CierreActualizado event) -> {
+            caja.cierre = event.getCierre();
         });
     }
 }

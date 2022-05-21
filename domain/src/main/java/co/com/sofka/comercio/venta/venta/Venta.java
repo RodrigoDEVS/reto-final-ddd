@@ -1,5 +1,6 @@
 package co.com.sofka.comercio.venta.venta;
 
+import co.com.sofka.comercio.venta.caja.values.Cierre;
 import co.com.sofka.comercio.venta.venta.events.*;
 import co.com.sofka.comercio.venta.venta.values.*;
 import co.com.sofka.domain.generic.AggregateEvent;
@@ -13,6 +14,10 @@ public class Venta extends AggregateEvent<VentaId> {
     protected Garantia garantia;
 
     protected Valor valor;
+
+    protected Cierre cierre;
+
+    protected EstadoDeVenta estadoDeVenta;
 
     public Venta(VentaId ventaId, Valor valor) {
         super(ventaId);
@@ -53,6 +58,9 @@ public class Venta extends AggregateEvent<VentaId> {
         appendChange(new DireccionClienteActualizada(clienteId, direccion)).apply();
     }
 
+    public void finalizarVenta(Cierre cierre){
+        appendChange(new VentaFinalizada(cierre)).apply();
+    }
     public Factura factura() {
         return factura;
     }

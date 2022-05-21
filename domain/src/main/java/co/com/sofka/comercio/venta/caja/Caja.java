@@ -16,6 +16,8 @@ public class Caja extends AggregateEvent<CajaId> {
 
     protected Tienda tienda;
 
+    protected Cierre cierre;
+
     public Caja(CajaId cajaId, Tienda tienda) {
         super(cajaId);
         appendChange(new CajaCreada(tienda)).apply();
@@ -31,6 +33,10 @@ public class Caja extends AggregateEvent<CajaId> {
         var caja = new Caja(cajaId);
         events.forEach(caja::applyEvent);
         return caja;
+    }
+
+    public void actualizarCierre(Cierre cierre){
+        appendChange(new CierreActualizado(cierre)).apply();
     }
 
     public void crearCajero(Nombre nombre, Cedula cedula, Telefono telefono){
