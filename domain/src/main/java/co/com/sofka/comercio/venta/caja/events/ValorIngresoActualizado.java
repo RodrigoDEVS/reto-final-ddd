@@ -15,10 +15,6 @@ public class ValorIngresoActualizado extends DomainEvent {
         this.valor = valor;
     }
 
-    public IngresoId getIngresoId() {
-        return ingresoId;
-    }
-
     public Valor getValor() {
         return valor;
     }

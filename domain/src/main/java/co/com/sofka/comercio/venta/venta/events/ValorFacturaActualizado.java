@@ -14,10 +14,6 @@ public class ValorFacturaActualizado extends DomainEvent {
         this.valor = valor;
     }
 
-    public FacturaId getFacturaId() {
-        return facturaId;
-    }
-
     public Valor getValor() {
         return valor;
     }

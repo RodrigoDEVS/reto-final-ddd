@@ -17,10 +17,6 @@ public class CrearIngreso extends Command {
         this.cajaId = cajaId;
     }
 
-    public IngresoId getIngresoId() {
-        return ingresoId;
-    }
-
     public Valor getValor() {
         return valor;
     }

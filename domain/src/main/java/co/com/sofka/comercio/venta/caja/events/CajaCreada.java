@@ -1,8 +1,5 @@
 package co.com.sofka.comercio.venta.caja.events;
 
-import co.com.sofka.comercio.venta.caja.Cajero;
-import co.com.sofka.comercio.venta.caja.Egreso;
-import co.com.sofka.comercio.venta.caja.Ingreso;
 import co.com.sofka.comercio.venta.caja.values.Tienda;
 import co.com.sofka.domain.generic.DomainEvent;
 

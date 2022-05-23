@@ -4,14 +4,15 @@ import co.com.sofka.domain.generic.ValueObject;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Objects;
 
 public class Fecha implements ValueObject<Fecha.Pros> {
 
     private final LocalDate dia;
-    private final LocalDateTime hora;
+    private final LocalTime hora;
 
-    public Fecha(LocalDate dia, LocalDateTime hora) {
+    public Fecha(LocalDate dia, LocalTime hora) {
         //TODO: Agregar validaciones (fechas futuras, el dia debe ser de 24H)
         this.dia = Objects.requireNonNull(dia);
         this.hora = Objects.requireNonNull(hora);
@@ -26,7 +27,7 @@ public class Fecha implements ValueObject<Fecha.Pros> {
             }
 
             @Override
-            public LocalDateTime hora() {
+            public LocalTime hora() {
                 return hora;
             }
         };
@@ -34,6 +35,6 @@ public class Fecha implements ValueObject<Fecha.Pros> {
 
     public interface Pros{
         LocalDate dia();
-        LocalDateTime hora();
+        LocalTime hora();
     }
 }

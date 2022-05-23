@@ -18,6 +18,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 import static org.mockito.Mockito.when;
@@ -35,7 +36,7 @@ public class AgregarGarantiaUseCaseTest {
         //arrange
         VentaId ventaId = VentaId.of("xxxx");
         GarantiaId garantiaId = new GarantiaId("10AA20BB");
-        Fecha fecha = new Fecha(LocalDate.now(), LocalDateTime.now());
+        Fecha fecha = new Fecha(LocalDate.now(), LocalTime.now());
         var command = new AgregarGarantia(garantiaId, fecha, ventaId);
 
         when(repository.getEventsBy("xxxx")).thenReturn(history());

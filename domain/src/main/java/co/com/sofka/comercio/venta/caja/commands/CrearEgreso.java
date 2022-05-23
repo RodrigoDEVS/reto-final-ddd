@@ -17,9 +17,6 @@ public class CrearEgreso extends Command {
         this.cajaId = cajaId;
     }
 
-    public EgresoId getEgresoId() {
-        return egresoId;
-    }
 
     public Valor getValor() {
         return valor;

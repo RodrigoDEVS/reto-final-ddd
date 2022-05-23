@@ -15,10 +15,6 @@ public class ValorEgresoActualizado extends DomainEvent {
         this.valor = valor;
     }
 
-    public EgresoId getEgresoId() {
-        return egresoId;
-    }
-
     public Valor getValor() {
         return valor;
     }

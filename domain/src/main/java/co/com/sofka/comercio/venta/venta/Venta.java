@@ -61,19 +61,11 @@ public class Venta extends AggregateEvent<VentaId> {
         appendChange(new DireccionClienteActualizada(clienteId, direccion)).apply();
     }
 
+    public void modificarFechaGarantia(GarantiaId garantiaId, Fecha fecha){
+        appendChange(new FechaGarantiaModificada(garantiaId, fecha)).apply();
+    }
     public void finalizarVenta(Cierre cierre){
         appendChange(new VentaFinalizada(cierre, cajaId)).apply();
-    }
-    public Factura factura() {
-        return factura;
-    }
-
-    public Cliente cliente(){
-        return cliente;
-    }
-
-    public Garantia garantia(){
-        return garantia;
     }
 
     public Valor valor() {

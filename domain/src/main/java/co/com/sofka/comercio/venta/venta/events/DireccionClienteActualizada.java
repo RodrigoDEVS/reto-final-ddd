@@ -15,10 +15,6 @@ public class DireccionClienteActualizada extends DomainEvent {
         this.direccion = direccion;
     }
 
-    public ClienteId getClienteId() {
-        return clienteId;
-    }
-
     public Direccion getDireccion() {
         return direccion;
     }

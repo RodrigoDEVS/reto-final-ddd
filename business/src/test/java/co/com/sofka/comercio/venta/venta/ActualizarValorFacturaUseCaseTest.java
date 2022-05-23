@@ -23,6 +23,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 @ExtendWith(MockitoExtension.class)
@@ -58,11 +59,11 @@ public class ActualizarValorFacturaUseCaseTest {
         Mockito.verify(repository).getEventsBy(ventaId.value());
     }
     private List<DomainEvent> history(){
-        CajaId cajaId = new CajaId("dddd");
+        CajaId cajaId = new CajaId("ccc");
         Valor valor = new Valor(0D);
         var event = new VentaCreada(valor, cajaId);
         event.setAggregateRootId("dddd");
-        var eventFactura = new FacturaGenerada(FacturaId.of("01AB58CD"), new Fecha(LocalDate.now(), LocalDateTime.now()), new Valor(5000D));
+        var eventFactura = new FacturaGenerada(FacturaId.of("01AB58CD"), new Fecha(LocalDate.now(), LocalTime.now()), new Valor(5000D));
         return List.of(event, eventFactura);
     }
 }

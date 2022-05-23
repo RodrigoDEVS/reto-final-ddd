@@ -15,10 +15,6 @@ public class TelefonoCajeroActualizado extends DomainEvent {
         this.telefono = telefono;
     }
 
-    public CajeroId getCajeroId() {
-        return cajeroId;
-    }
-
     public Telefono getTelefono() {
         return telefono;
     }

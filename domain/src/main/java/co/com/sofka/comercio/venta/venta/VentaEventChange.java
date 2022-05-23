@@ -1,6 +1,7 @@
 package co.com.sofka.comercio.venta.venta;
 
 import co.com.sofka.comercio.venta.caja.values.Cierre;
+import co.com.sofka.comercio.venta.venta.commands.ModificarFechaGarantia;
 import co.com.sofka.comercio.venta.venta.events.*;
 import co.com.sofka.comercio.venta.venta.values.EstadoDeVenta;
 import co.com.sofka.domain.generic.EventChange;
@@ -35,6 +36,11 @@ public class VentaEventChange extends EventChange {
         apply((ValorFacturaActualizado event) -> {
             var valor = event.getValor();
             venta.factura.actualizarValor(valor);
+        });
+
+        apply((FechaGarantiaModificada event) -> {
+            var fecha = event.getFecha();
+            venta.garantia.modificarFecha(fecha);
         });
 
         apply((VentaFinalizada event) -> {

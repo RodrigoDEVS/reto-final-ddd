@@ -20,10 +20,6 @@ public class AgregarCliente extends Command {
         this.ventaId = ventaId;
     }
 
-    public ClienteId getClienteId() {
-        return clienteId;
-    }
-
     public Nombre getNombre() {
         return nombre;
     }

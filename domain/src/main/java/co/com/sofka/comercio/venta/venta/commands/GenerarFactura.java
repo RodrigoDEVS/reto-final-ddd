@@ -20,10 +20,6 @@ public class GenerarFactura extends Command {
         this.ventaId = ventaId;
     }
 
-    public FacturaId getFacturaId() {
-        return facturaId;
-    }
-
     public Fecha getFecha() {
         return fecha;
     }

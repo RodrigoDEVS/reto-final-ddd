@@ -64,16 +64,4 @@ public class Caja extends AggregateEvent<CajaId> {
     public void actualizarTelefonoCajero(CajeroId cajeroId, Telefono telefono){
         appendChange(new TelefonoCajeroActualizado(cajeroId, telefono)).apply();
     }
-
-    public Cajero getCajero() {
-        return cajero;
-    }
-
-    public Ingreso getIngreso() {
-        return ingreso;
-    }
-
-    public Egreso getEgreso() {
-        return egreso;
-    }
 }

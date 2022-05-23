@@ -18,6 +18,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.chrono.ChronoLocalDate;
 import java.util.List;
 
 import static org.mockito.Mockito.when;
@@ -36,7 +38,7 @@ public class GenerarFacturaUseCaseTest {
         //arrange
         VentaId ventaId = VentaId.of("xxxx");
         FacturaId facturaId = new FacturaId("10AA20BB");
-        Fecha fecha = new Fecha(LocalDate.now(), LocalDateTime.now());
+        Fecha fecha = new Fecha(LocalDate.now(), LocalTime.of(10, 30));
         Valor valor = new Valor(3500000D);
         var command = new GenerarFactura(facturaId, fecha, valor, ventaId);
 
@@ -54,7 +56,7 @@ public class GenerarFacturaUseCaseTest {
         Assertions.assertEquals(3500000D, event.getValor().value());
     }
     private List<DomainEvent> history(){
-        CajaId cajaId = new CajaId("xxxx");
+        CajaId cajaId = new CajaId("ccc");
         Valor valor = new Valor(0D);
         var event = new VentaCreada(valor, cajaId);
         event.setAggregateRootId("xxxx");
